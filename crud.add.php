@@ -39,7 +39,10 @@
 
     <p> Adı Soyadı: <input type="text" name="adi" /> </p>
     <p> Telefonu:   <input type="text" name="tel" /> </p>
-    <p><input type="submit" value="KAYDET" /> </p>
+    <p>
+        <input type="submit" value="KAYDET" />
+        <a href="index.php">Vazgeç...</a>
+    </p>
 
   </form>
 
