@@ -49,7 +49,7 @@ if($RowCount == 0) { // Kayıt yok...
 ?>
 
 <p>
-  <a href="">Yeni kayıt ekle...</a>
+  <a href="crud.add.php">Yeni kayıt ekle...</a>
 </p>
 
 </body>
