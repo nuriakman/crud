@@ -32,6 +32,8 @@ if($RowCount == 0) { // Kayıt yok...
               <th>SıraNo</th>
               <th>Adı Soyadı</th>
               <th>Telefonu</th>
+              <th>Güncelle</th>
+              <th>Sil</th>
            </tr>";
   $c=0;
   while($row = mysqli_fetch_assoc($rows)) {
@@ -42,6 +44,8 @@ if($RowCount == 0) { // Kayıt yok...
             <td>$c</td>
             <td>$adisoyadi</td>
             <td>$telefonu</td>
+            <td><a href='crud.update.php?kayitno=$id'>Güncelle</a></td>
+            <td><a href=''>Sil</a></td>
          </tr>";
   } // while
   echo "</table>";
