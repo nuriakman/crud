@@ -1,4 +1,7 @@
 <?php require_once("_config.php"); ?>
+<?php
+  @session_start(); // Bu yazılmadan SESSION değişkenlerine erişilemez!
+?>
 <html>
 <head>
   <meta charset="utf-8" />
@@ -55,9 +58,12 @@ if($RowCount == 0) { // Kayıt yok...
 } // Kayıt var
 ?>
 
-<p>
-  <a href="crud.add.php">Yeni kayıt ekle...</a>
-</p>
+<?php if( $_SESSION["yetkili"] == 1 ) { ?>
+<p> <a href="crud.add.php">Yeni kayıt ekle...</a> </p>
+<p> <a href="crud.logout.php">Oturumu Kapat...</a> </p>
+<?php } ?>
+
+<p> <a href="crud.login.php">Yönetici Girişi...</a> </p>
 
 </body>
 </html>
