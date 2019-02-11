@@ -45,7 +45,7 @@ if($RowCount == 0) { // Kayıt yok...
             <td>$adisoyadi</td>
             <td>$telefonu</td>
             <td><a href='crud.update.php?kayitno=$id'>Güncelle</a></td>
-            <td><a href=''>Sil</a></td>
+            <td><a href='crud.delete.php?kayitno=$id'>Sil</a></td>
          </tr>";
   } // while
   echo "</table>";
