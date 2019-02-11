@@ -16,11 +16,24 @@
 </head>
 <body>
   <h1>Telefon Rehberi</h1>
+
+  <form method="get">
+    <p>
+      İsim Bul: <input type="text" name="aranan" placeholder="Arama yapın" />
+      <input type="submit" value="Ara!" />
+    </p>
+  </form>
+
 <?php
 ## Veritabanından kayıt çekme ve TABLE ile listeleme örneği
 ## Veritabanından kayıt çekme ve TABLE ile listeleme örneği
 
-$SQL = "SELECT * FROM telefonrehberi";
+if( isset($_GET["aranan"]) ) {
+  $ARANAN = $_GET["aranan"];
+  $SQL = "SELECT * FROM telefonrehberi WHERE adisoyadi like '$ARANAN%' ";
+} else {
+  $SQL = "SELECT * FROM telefonrehberi";
+}
 $rows = mysqli_query($cnnMySQL, $SQL);
 $RowCount = mysqli_num_rows($rows);
 if($RowCount == 0) { // Kayıt yok...
