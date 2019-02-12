@@ -32,29 +32,61 @@ $RowCount = mysqli_num_rows($rows);
 if($RowCount == 0) { // Kayıt yok...
   echo "Rehberde Kayıt bulunamadı...";
 } else { // Kayıt var
-  // Tablo başlığını yazdıralım
-  echo "<table class='table table-hover' border=1 cellpadding=10 cellspacing=0>
-          <tr>
-              <th>SıraNo</th>
-              <th>Adı Soyadı</th>
-              <th>Telefonu</th>
-              <th>Güncelle</th>
-              <th>Sil</th>
-           </tr>";
-  $c=0;
-  while($row = mysqli_fetch_assoc($rows)) {
-    extract($row); // "Key" adında değişkenler oluştur :)
-    $c++;
-    // Tablo başlığını yazdıralım
-    echo "<tr>
-            <td>$c</td>
-            <td>$adisoyadi</td>
-            <td>$telefonu</td>
-            <td><a href='crud.update.php?kayitno=$id'>Güncelle</a></td>
-            <td><a href='crud.delete.php?kayitno=$id'>Sil</a></td>
-         </tr>";
-  } // while
-  echo "</table>";
+
+
+  if( $_SESSION["yetkili"] == 1 ) {  // YÖNETİCİNİN GÖRECEĞİ EKRAN
+      // Tablo başlığını yazdıralım
+      echo "<table class='table table-hover' border=1 cellpadding=10 cellspacing=0>
+              <tr>
+                  <th>SıraNo</th>
+                  <th>Adı Soyadı</th>
+                  <th>Telefonu</th>
+                  <th>Güncelle</th>
+                  <th>Sil</th>
+               </tr>";
+      $c=0;
+      while($row = mysqli_fetch_assoc($rows)) {
+        extract($row); // "Key" adında değişkenler oluştur :)
+        $c++;
+        // Tablo başlığını yazdıralım
+        echo "<tr>
+                <td>$c</td>
+                <td>$adisoyadi</td>
+                <td>$telefonu</td>
+                <td><a href='crud.update.php?kayitno=$id'>Güncelle</a></td>
+                <td><a href='crud.delete.php?kayitno=$id'>Sil</a></td>
+             </tr>";
+      } // while
+      echo "</table>";
+  } // if( $_SESSION["yetkili"] == 1 ) {
+
+
+
+  if( $_SESSION["yetkili"] != 1 ) {  // KULLANICININ GÖRECEĞİ EKRAN
+      // Tablo başlığını yazdıralım
+      echo "<table class='table table-hover' border=1 cellpadding=10 cellspacing=0>
+              <tr>
+                  <th>SıraNo</th>
+                  <th>Adı Soyadı</th>
+                  <th>Telefonu</th>
+               </tr>";
+      $c=0;
+      while($row = mysqli_fetch_assoc($rows)) {
+        extract($row); // "Key" adında değişkenler oluştur :)
+        $c++;
+        // Tablo başlığını yazdıralım
+        echo "<tr>
+                <td>$c</td>
+                <td>$adisoyadi</td>
+                <td>$telefonu</td>
+             </tr>";
+      } // while
+      echo "</table>";
+  } // if( $_SESSION["yetkili"] == 1 ) {
+
+
+
+
 } // Kayıt var
 ?>
 
