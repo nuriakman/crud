@@ -40,7 +40,20 @@
 
     <p> Adı Soyadı: <input type="text" name="adi" value="<?=$row["adisoyadi"]?>" /> </p>
     <p> Telefonu:   <input type="text" name="tel" value="<?=$row["telefonu"]?>"/> </p>
-    <p> Grubu:      <input type="text" name="grup" value="<?=$row["grubu"]?>"/> </p>
+    <p> Grubu:
+        <?php
+          $SQL = "SELECT * FROM gruplar ORDER BY grupadi ";
+          $rowsGrubu = mysqli_query($cnnMySQL, $SQL);
+          $Secenekler = "";
+          while($rowGrup = mysqli_fetch_assoc($rowsGrubu)) {
+            if( $rowGrup["id"] == $row["grubu"] ) $Secili = " selected "; else $Secili = "";
+            $Secenekler .= sprintf("<option value='%s' $Secili>%s</option>\n", $rowGrup["id"], $rowGrup["grupadi"]);
+          }
+        ?>
+        <select name="grup">
+          <?php echo $Secenekler; ?>
+        </select>
+    </p>
     <p>
         <input type="submit" value="Güncelle" />
         <input type="hidden" name="id" value="<?=$row["id"]?>"/>

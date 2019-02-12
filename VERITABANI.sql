@@ -28,14 +28,15 @@ CREATE TABLE `telefonrehberi` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `adisoyadi` varchar(100) COLLATE utf8_turkish_ci NOT NULL,
   `telefonu` varchar(100) COLLATE utf8_turkish_ci NOT NULL,
-  `grubu` varchar(100) COLLATE utf8_turkish_ci NOT NULL,
+  `grubu` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
 
 INSERT INTO `telefonrehberi` (`id`, `adisoyadi`, `telefonu`, `grubu`) VALUES
-(1,	'Nuri Akman',	'4445566',	'Bilkent Hastanesi'),
-(2,	'Kemal Mutlu',	'5556666',	'Bilkent Hastanesi'),
-(6,	'Çiğdem Tosun',	'44444',	'Tedarikçi'),
-(7,	'Ali',	'Yalçın',	'Kalite');
+(1,	'Nuri Akman',	'4445566',	2),
+(2,	'Kemal Mutlu',	'5556666',	1),
+(6,	'Çiğdem Tosun',	'44444',	1),
+(7,	'Ali',	'Yalçın',	3),
+(8,	'Kübra Yıldız',	'5464777',	1);
 
--- 2019-02-12 08:34:54
+-- 2019-02-12 09:14:52

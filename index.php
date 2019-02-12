@@ -23,9 +23,28 @@
 
 if( isset($_GET["aranan"]) ) {
   $ARANAN = $_GET["aranan"];
-  $SQL = "SELECT * FROM telefonrehberi WHERE adisoyadi like '$ARANAN%' ";
+  $SQL = "  SELECT
+                telefonrehberi.*,
+                gruplar.grupadi
+            FROM
+                telefonrehberi,
+                gruplar
+            WHERE
+               adisoyadi like '%$ARANAN%'  AND
+               telefonrehberi.grubu = gruplar.id
+            ORDER BY
+              adisoyadi             ";
 } else {
-  $SQL = "SELECT * FROM telefonrehberi";
+  $SQL = "  SELECT
+                telefonrehberi.*,
+                gruplar.grupadi
+            FROM
+                telefonrehberi,
+                gruplar
+            WHERE
+               telefonrehberi.grubu = gruplar.id
+            ORDER BY
+              adisoyadi             ";
 }
 $rows = mysqli_query($cnnMySQL, $SQL);
 $RowCount = mysqli_num_rows($rows);
@@ -54,7 +73,7 @@ if($RowCount == 0) { // Kayıt yok...
                 <td>$c</td>
                 <td>$adisoyadi</td>
                 <td>$telefonu</td>
-                <td>$grubu</td>
+                <td>$grupadi</td>
                 <td><a href='crud.update.php?kayitno=$id'>Güncelle</a></td>
                 <td><a href='crud.delete.php?kayitno=$id'>Sil</a></td>
              </tr>";
@@ -82,7 +101,7 @@ if($RowCount == 0) { // Kayıt yok...
                 <td>$c</td>
                 <td>$adisoyadi</td>
                 <td>$telefonu</td>
-                <td>$grubu</td>
+                <td>$grupadi</td>
              </tr>";
       } // while
       echo "</table>";

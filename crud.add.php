@@ -32,7 +32,22 @@
 
     <p> Adı Soyadı: <input type="text" name="adi" /> </p>
     <p> Telefonu:   <input type="text" name="tel" /> </p>
-    <p> Grubu:   <input type="text" name="grup" /> </p>
+    <p> Grubu:
+        <?php
+          $SQL = "SELECT * FROM gruplar ORDER BY grupadi ";
+          $rowsGrubu = mysqli_query($cnnMySQL, $SQL);
+          $Secenekler = "";
+          while($rowGrup = mysqli_fetch_assoc($rowsGrubu)) {
+            $Secenekler .= sprintf("<option value='%s'>%s</option>\n", $rowGrup["id"], $rowGrup["grupadi"]);
+          }
+        ?>
+
+
+        <select name="grup">
+          <?php echo $Secenekler; ?>
+        </select>
+    </p>
+
     <p>
         <input type="submit" value="KAYDET" />
         <a href="index.php">Vazgeç...</a>
