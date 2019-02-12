@@ -7,10 +7,12 @@
     // SQL içine konulacak değişkenlere MUTLAKA bu işlem uygulanmalıdır. Bunun sebebi GÜVENLİK'tir.
     $adi = mysqli_real_escape_string($cnnMySQL, $_POST["adi"]);
     $tel = mysqli_real_escape_string($cnnMySQL, $_POST["tel"]);
+    $grup = mysqli_real_escape_string($cnnMySQL, $_POST["grup"]);
 
     $SQL = "INSERT INTO telefonrehberi SET
                 adisoyadi = '$adi',
-                telefonu  = '$tel'  ";
+                telefonu  = '$tel',
+                grubu  = '$grup'            ";
     $rows = mysqli_query($cnnMySQL, $SQL);
 
     echo "<p>Kayıt tamam...</p>";
@@ -30,6 +32,7 @@
 
     <p> Adı Soyadı: <input type="text" name="adi" /> </p>
     <p> Telefonu:   <input type="text" name="tel" /> </p>
+    <p> Grubu:   <input type="text" name="grup" /> </p>
     <p>
         <input type="submit" value="KAYDET" />
         <a href="index.php">Vazgeç...</a>

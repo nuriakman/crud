@@ -7,11 +7,13 @@
     // SQL içine konulacak değişkenlere MUTLAKA bu işlem uygulanmalıdır. Bunun sebebi GÜVENLİK'tir.
     $adi = mysqli_real_escape_string($cnnMySQL, $_POST["adi"]);
     $tel = mysqli_real_escape_string($cnnMySQL, $_POST["tel"]);
+    $grup= mysqli_real_escape_string($cnnMySQL, $_POST["grup"]);
     $KAYITNO = mysqli_real_escape_string($cnnMySQL, $_POST["id"]);
 
     $SQL = "UPDATE telefonrehberi SET
                 adisoyadi = '$adi',
-                telefonu  = '$tel'
+                telefonu  = '$tel',
+                grubu  = '$grup'
             WHERE id = '$KAYITNO'       ";
     $rows = mysqli_query($cnnMySQL, $SQL);
     echo "<p>Kayıt güncellendi...</p>";
@@ -38,6 +40,7 @@
 
     <p> Adı Soyadı: <input type="text" name="adi" value="<?=$row["adisoyadi"]?>" /> </p>
     <p> Telefonu:   <input type="text" name="tel" value="<?=$row["telefonu"]?>"/> </p>
+    <p> Grubu:      <input type="text" name="grup" value="<?=$row["grubu"]?>"/> </p>
     <p>
         <input type="submit" value="Güncelle" />
         <input type="hidden" name="id" value="<?=$row["id"]?>"/>

@@ -41,6 +41,7 @@ if($RowCount == 0) { // Kayıt yok...
                   <th>SıraNo</th>
                   <th>Adı Soyadı</th>
                   <th>Telefonu</th>
+                  <th>Grubu</th>
                   <th>Güncelle</th>
                   <th>Sil</th>
                </tr>";
@@ -53,6 +54,7 @@ if($RowCount == 0) { // Kayıt yok...
                 <td>$c</td>
                 <td>$adisoyadi</td>
                 <td>$telefonu</td>
+                <td>$grubu</td>
                 <td><a href='crud.update.php?kayitno=$id'>Güncelle</a></td>
                 <td><a href='crud.delete.php?kayitno=$id'>Sil</a></td>
              </tr>";
@@ -69,6 +71,7 @@ if($RowCount == 0) { // Kayıt yok...
                   <th>SıraNo</th>
                   <th>Adı Soyadı</th>
                   <th>Telefonu</th>
+                  <th>Grubu</th>
                </tr>";
       $c=0;
       while($row = mysqli_fetch_assoc($rows)) {
@@ -79,6 +82,7 @@ if($RowCount == 0) { // Kayıt yok...
                 <td>$c</td>
                 <td>$adisoyadi</td>
                 <td>$telefonu</td>
+                <td>$grubu</td>
              </tr>";
       } // while
       echo "</table>";

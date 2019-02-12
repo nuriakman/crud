@@ -33,6 +33,7 @@
 
     <p> Adı Soyadı: <?=$row["adisoyadi"]?> </p>
     <p> Telefonu:   <?=$row["telefonu"]?> </p>
+    <p> Telefonu:   <?=$row["grubu"]?> </p>
     <p>
         <input type="submit" value="KAYDI SİL" />
         <input type="hidden" name="id" value="<?=$row["id"]?>"/>
