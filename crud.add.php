@@ -1,5 +1,5 @@
 <?php require_once("_config.php"); ?>
-
+<?php require_once("crud.yetki.kontrolu.php"); ?>
 <?php
   if( isset($_POST["adi"]) ) {
     ## Veritabanına kayıt ekleme
