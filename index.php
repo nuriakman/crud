@@ -10,9 +10,23 @@
 <body>
   <h1>Telefon Rehberi</h1>
 
+  <?php
+  $SQL = "SELECT * FROM gruplar ORDER BY grupadi ";
+  $rowsGrubu   = mysqli_query($cnnMySQL, $SQL);
+  $Secenekler  = "";
+  $Secenekler .= "<option value='0'>** HEPSİ **</option>\n";
+  while($rowGrup = mysqli_fetch_assoc($rowsGrubu)) {
+    $Secenekler .= sprintf("<option value='%s'>%s</option>\n", $rowGrup["id"], $rowGrup["grupadi"]);
+  }
+  ?>
+
   <form method="get">
     <p>
-      İsim Bul: <input type="text" name="aranan" placeholder="Arama yapın" />
+      Tel. Bul: <input type="text" name="aranantel" placeholder="Telefonda ara" style="width: 100px;" />
+      İsim Bul: <input type="text" name="aranan" placeholder="Arama yapın" style="width: 100px;" />
+      Birim Süz: <select name="grup">
+        <?php echo $Secenekler; ?>
+      </select>
       <input type="submit" value="Ara!" />
     </p>
   </form>
@@ -22,7 +36,28 @@
 ## Veritabanından kayıt çekme ve TABLE ile listeleme örneği
 
 if( isset($_GET["aranan"]) ) {
-  $ARANAN = $_GET["aranan"];
+
+  $ARANANAD   = $_GET["aranan"];
+  $ARANANGRUP = $_GET["grup"];
+  $ARANANTEL  = $_GET["aranantel"];
+
+  $arrKosul = array();
+  $arrKosul[] = 1;
+
+  if( $ARANANGRUP > 0 ) { // Grup Süz :: Sadece grupta ara
+    $arrKosul[] = " telefonrehberi.grubu = '$ARANANGRUP' ";
+  }
+
+  if( $ARANANAD != "" ) { // İsimde Ara
+    $arrKosul[] = " adisoyadi like '%$ARANANAD%' ";
+  }
+
+  if( $ARANANTEL != "" ) { // Telefonda Ara
+    $arrKosul[] = " telefonu like '%$ARANANTEL%' ";
+  }
+
+  $Kosul = implode(" AND ", $arrKosul);
+
   $SQL = "  SELECT
                 telefonrehberi.*,
                 gruplar.grupadi
@@ -30,10 +65,11 @@ if( isset($_GET["aranan"]) ) {
                 telefonrehberi,
                 gruplar
             WHERE
-               adisoyadi like '%$ARANAN%'  AND
+               $Kosul AND
                telefonrehberi.grubu = gruplar.id
             ORDER BY
               adisoyadi             ";
+
 } else {
   $SQL = "  SELECT
                 telefonrehberi.*,
